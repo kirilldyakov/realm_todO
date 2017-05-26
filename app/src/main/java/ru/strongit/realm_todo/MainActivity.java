@@ -17,6 +17,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if(savedInstanceState == null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.edition_container, new MyEditionFragment())
+                    .add(R.id.list_container, new MyListFragment())
+                    .commit();
+        }
+
+
         Context ctx = getApplicationContext();
 
         mRealm = Realm.getInstance(ctx);
@@ -24,3 +34,5 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
+
+//https://github.com/DroidsOnRoids/ExampleRealm-Android/blob/master/app/src/main/java/pl/droidsonroids/examplerealm/ui/MyMainActivity.java
